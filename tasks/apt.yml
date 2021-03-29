@@ -5,6 +5,7 @@
     pkg: nginx-{{ nginx_flavor }}
   notify:
     - restart nginx
+  when: not nginx_skip_install
 
 - name: Disable default vhost
   file:

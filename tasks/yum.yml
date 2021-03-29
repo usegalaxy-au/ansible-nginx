@@ -6,7 +6,7 @@
   notify:
     - restart nginx
     - supervisorctl restart nginx
-  when: nginx_flavor != "galaxy"
+  when: nginx_flavor != "galaxy" and not nginx_skip_install
 
 - name: Install Galaxy nginx
   yum:
@@ -14,7 +14,7 @@
   notify:
     - restart nginx
     - supervisorctl restart nginx
-  when: nginx_flavor == "galaxy"
+  when: nginx_flavor == "galaxy" and not nginx_skip_install
 
 - name: Set permissions on temporary directories
   file:
